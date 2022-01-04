@@ -1,2 +1,9 @@
 # M226b-Endproject
-This repository serves the use of documenting the build process of my final project in the module 226b of ICT swiss curricular. 
+Notes and Diary come here
+
+## Day 1 04.01.2022
+### This day I was actively searching for project ideas. 
+
+Criterias that need to be fulfilled:
+- blah blah blah
+- blah blah blah
