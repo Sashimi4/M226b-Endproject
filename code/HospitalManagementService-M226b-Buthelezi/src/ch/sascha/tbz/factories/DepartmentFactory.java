@@ -1,4 +1,4 @@
-package ch.sascha.tbz;
+package ch.sascha.tbz.factories;
 
 import ch.sascha.tbz.abstracts.Department;
 import ch.sascha.tbz.departments.*;

@@ -1,6 +1,7 @@
 package ch.sascha.tbz;
 
 import ch.sascha.tbz.abstracts.Department;
+import ch.sascha.tbz.factories.DepartmentFactory;
 
 import java.util.ArrayList;
 
