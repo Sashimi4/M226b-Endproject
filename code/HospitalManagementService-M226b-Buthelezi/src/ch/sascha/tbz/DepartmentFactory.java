@@ -4,6 +4,7 @@ import ch.sascha.tbz.abstracts.Department;
 import ch.sascha.tbz.departments.*;
 
 //department creation factory to hide logic and keep abstraction intact
+//hides attributes I give as a parameter
 public class DepartmentFactory {
 
     //alphabetically ordered
