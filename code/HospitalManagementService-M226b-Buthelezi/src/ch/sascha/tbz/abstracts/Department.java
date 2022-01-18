@@ -6,4 +6,20 @@ public abstract class Department {
     //2. Patient counter + max amount of patient able to be held
     //3.
 
+    //no use
+    public Department() {
+    }
+
+    private int employeeCount;
+    //no clue if this is needed
+    private int activeDoctorsAvailable;
+
+
+    public int getEmployeeCount() {
+        return employeeCount;
+    }
+
+    public void setEmployeeCount(int employeeCount) {
+        this.employeeCount = employeeCount;
+    }
 }

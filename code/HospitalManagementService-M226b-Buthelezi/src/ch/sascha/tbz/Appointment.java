@@ -1,6 +1,6 @@
 package ch.sascha.tbz;
 
-public class Appointement {
+public class Appointment {
 
 
     //contains a patient, department, date + time
