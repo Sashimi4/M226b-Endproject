@@ -1,6 +1,6 @@
 package ch.sascha.tbz;
 
-public class Main {
+public class Starter {
 
     public static void main(String[] args) {
 
