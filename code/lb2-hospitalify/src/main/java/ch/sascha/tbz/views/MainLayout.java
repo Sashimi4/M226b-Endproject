@@ -1,10 +1,6 @@
 package ch.sascha.tbz.views;
 
 
-import ch.sascha.tbz.views.addressform.AddressFormView;
-import ch.sascha.tbz.views.admindetail.AdminDetailView;
-import ch.sascha.tbz.views.patientform.PatientFormView;
-import ch.sascha.tbz.views.staffform.StaffFormView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
