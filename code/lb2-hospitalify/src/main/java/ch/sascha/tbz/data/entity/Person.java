@@ -4,6 +4,9 @@ import ch.sascha.tbz.abstracts.AbstractEntity;
 import java.time.LocalDate;
 import javax.persistence.*;
 
+/**
+ * ! needs to also implement observable to see if a name or something has changed
+ */
 @Entity
 @Table(name = "person")
 public class Person extends AbstractEntity {
@@ -19,18 +22,15 @@ public class Person extends AbstractEntity {
 
     private String phone;
 
+    @Column(nullable = false)
     private LocalDate dateOfBirth;
 
     @ManyToOne
     @JoinColumn(name = "employment_id")
     private Employment employment_id;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Employment person;
-
     /**
-     *
+     * create new person and blank out form when using
      */
     public Person() {}
 
@@ -42,24 +42,16 @@ public class Person extends AbstractEntity {
      * @param phone
      * @param dateOfBirth
      * @param employment_id
-     * @param person
      */
-    public Person(String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Employment employment_id, Employment person) {
+    public Person(String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Employment employment_id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
         this.employment_id = employment_id;
-        this.person = person;
     }
 
-    public Employment getPerson() {
-        return person;
-    }
-    public void setPerson(Employment person) {
-        this.person = person;
-    }
     public String getFirstName() {
         return firstName;
     }

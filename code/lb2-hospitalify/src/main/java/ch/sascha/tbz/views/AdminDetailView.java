@@ -45,8 +45,6 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
     private TextField phone;
     private DatePicker dateOfBirth;
 
-
-
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
@@ -111,10 +109,10 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
                 personService.update(this.samplePerson);
                 clearForm();
                 refreshGrid();
-                Notification.show("SamplePerson details stored.");
+                Notification.show("Person details stored.");
                 UI.getCurrent().navigate(AdminDetailView.class);
             } catch (ValidationException validationException) {
-                Notification.show("An exception happened while trying to store the samplePerson details.");
+                Notification.show("An exception happened while trying to store the person details.");
             }
         });
 
@@ -129,7 +127,7 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
                 populateForm(samplePersonFromBackend.get());
             } else {
                 Notification.show(
-                        String.format("The requested samplePerson was not found, ID = %d", samplePersonId.get()), 3000,
+                        String.format("The requested person was not found, ID = %d", samplePersonId.get()), 3000,
                         Notification.Position.BOTTOM_START);
                 // when a row is selected but the data is no longer available,
                 // refresh grid
@@ -196,6 +194,5 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
     private void populateForm(Person value) {
         this.samplePerson = value;
         binder.readBean(this.samplePerson);
-
     }
 }

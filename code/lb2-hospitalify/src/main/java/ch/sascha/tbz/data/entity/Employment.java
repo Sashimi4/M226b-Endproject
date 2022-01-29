@@ -8,15 +8,15 @@ import java.util.List;
 @Table(name = "employment")
 public class Employment extends AbstractEntity{
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "employment_id")
     private List<Person> people;
 
-    private String employment;  //(nurse, doctor, cleaning crew, etc)
+    private String employment;  //(nurse, doctor, cleaning crew, etc) as ID's
+
 
     public String getEmployment() {
         return employment;
     }
-
     public void setEmployment(String employment) {
         this.employment = employment;
     }

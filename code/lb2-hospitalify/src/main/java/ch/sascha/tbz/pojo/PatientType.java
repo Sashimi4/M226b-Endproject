@@ -1,4 +1,4 @@
-package ch.sascha.tbz;
+package ch.sascha.tbz.pojo;
 
 public enum PatientType {
 

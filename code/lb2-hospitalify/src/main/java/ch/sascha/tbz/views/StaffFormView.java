@@ -1,6 +1,8 @@
 package ch.sascha.tbz.views;
 
+import ch.sascha.tbz.data.entity.Employment;
 import ch.sascha.tbz.data.entity.Person;
+import ch.sascha.tbz.data.service.EmploymentService;
 import ch.sascha.tbz.data.service.PersonService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -15,6 +17,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -37,11 +40,11 @@ public class StaffFormView extends Div {
 
     private Binder<Person> binder = new Binder(Person.class);
 
-    public StaffFormView(PersonService personService) {
+    public StaffFormView(PersonService personService, EmploymentService employmentService) {
         addClassName("staff-form-view");
 
         add(createTitle());
-        add(createFormLayout());
+        add(createFormLayout(employmentService));
         add(createButtonLayout());
 
         binder.bindInstanceFields(this);
@@ -63,11 +66,18 @@ public class StaffFormView extends Div {
         return new H3("Personal information");
     }
 
-    private Component createFormLayout() {
+    private Component createFormLayout(EmploymentService employmentService) {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email);
+        formLayout.add(firstName, lastName, dateOfBirth, phone, email, createEmploymentDropDownBox(employmentService));
         return formLayout;
+    }
+
+    private Component createEmploymentDropDownBox(EmploymentService employmentService) {
+        Select<Employment> employmentStatus = new Select<>();
+        employmentStatus.setLabel("Job Title");
+        employmentStatus.setItems(employmentService.retrieveAllEmploymentTypes());
+        return employmentStatus;
     }
 
     private Component createButtonLayout() {

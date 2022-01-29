@@ -123,13 +123,15 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("Patient Form", "la la-user", PatientFormView.class), //
+                new MenuItemInfo("Patient Form", "la la-user", PatientFormView.class),
 
-                new MenuItemInfo("Staff Form", "la la-user", StaffFormView.class), //
+                new MenuItemInfo("Staff Form", "la la-user", StaffFormView.class),
 
-                new MenuItemInfo("Admin Detail", "la la-cog", AdminDetailView.class), //
+                new MenuItemInfo("Employment Form", "la la-user", EmploymentFormView.class),
 
-                new MenuItemInfo("Address Form", "la la-map-marker", AddressFormView.class), //
+                new MenuItemInfo("Admin Detail", "la la-cog", AdminDetailView.class),
+
+                new MenuItemInfo("Address Form", "la la-map-marker", AddressFormView.class),
 
         };
     }
