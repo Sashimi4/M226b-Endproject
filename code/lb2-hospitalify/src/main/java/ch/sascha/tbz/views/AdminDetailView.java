@@ -44,8 +44,8 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
     private TextField email;
     private TextField phone;
     private DatePicker dateOfBirth;
-    private TextField occupation;
-    private Checkbox important;
+
+
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
@@ -74,7 +74,6 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         grid.addColumn("email").setAutoWidth(true);
         grid.addColumn("phone").setAutoWidth(true);
         grid.addColumn("dateOfBirth").setAutoWidth(true);
-        grid.addColumn("occupation").setAutoWidth(true);
 
         grid.setDataProvider(new CrudServiceDataProvider<>(personService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -155,10 +154,7 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         email = new TextField("Email");
         phone = new TextField("Phone");
         dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new TextField("Occupation");
-        important = new Checkbox("Important");
-        important.getStyle().set("padding-top", "var(--lumo-space-m)");
-        Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, occupation, important};
+        Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth};
 
         for (Component field : fields) {
             ((HasStyle) field).addClassName("full-width");

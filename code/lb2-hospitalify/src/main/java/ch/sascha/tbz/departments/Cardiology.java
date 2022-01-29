@@ -8,4 +8,8 @@ public class Cardiology extends Department {
     public Cardiology() {
     }
 
+    public Cardiology(int max_patient_count, int employeeCount, int activeDoctorsAvailable) {
+        super(max_patient_count, employeeCount, activeDoctorsAvailable);
+    }
+
 }

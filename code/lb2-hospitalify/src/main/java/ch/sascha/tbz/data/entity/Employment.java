@@ -1,18 +1,15 @@
 package ch.sascha.tbz.data.entity;
 
 import ch.sascha.tbz.abstracts.AbstractEntity;
+import javax.persistence.*;
+import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Set;
-
+@Entity
+@Table(name = "employment")
 public class Employment extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    //@OneToMany(mappedBy = "")
-    private Set<Integer> id;
+    @OneToMany(mappedBy = "person")
+    private List<Person> people;
 
     private String employment;  //(nurse, doctor, cleaning crew, etc)
 

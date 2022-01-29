@@ -2,12 +2,10 @@ package ch.sascha.tbz.data.entity;
 
 import ch.sascha.tbz.abstracts.AbstractEntity;
 import java.time.LocalDate;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "person")
 public class Person extends AbstractEntity {
 
     @Column(nullable = false)
@@ -19,14 +17,49 @@ public class Person extends AbstractEntity {
     @Column(nullable = false)
     private String email;
 
-
     private String phone;
 
     private LocalDate dateOfBirth;
 
-    //@JoinColumn(name = "FK_person_employment_id")
-    private Employment employment;
+    @ManyToOne
+    @JoinColumn(name = "employment_id")
+    private Employment employment_id;
 
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Employment person;
+
+    /**
+     *
+     */
+    public Person() {}
+
+    /**
+     * Static binding
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param phone
+     * @param dateOfBirth
+     * @param employment_id
+     * @param person
+     */
+    public Person(String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Employment employment_id, Employment person) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+        this.employment_id = employment_id;
+        this.person = person;
+    }
+
+    public Employment getPerson() {
+        return person;
+    }
+    public void setPerson(Employment person) {
+        this.person = person;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -57,10 +90,10 @@ public class Person extends AbstractEntity {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public Employment getEmployment() {
-        return employment;
+    public Employment getEmployment_id() {
+        return employment_id;
     }
-    public void setEmployment(Employment employment) {
-        this.employment = employment;
+    public void setEmployment_id(Employment employment_id) {
+        this.employment_id = employment_id;
     }
 }
