@@ -16,7 +16,7 @@ public class Patient extends Person {
     public Patient() {}
 
     public Patient(PatientType patientType, Person personInformation) {
-        super(personInformation.getFirstName(), personInformation.getLastName(), personInformation.getEmail(), personInformation.getPhone(), personInformation.getDateOfBirth(), personInformation.getEmployment_id());
+        super(personInformation.getFirstName(), personInformation.getLastName(), personInformation.getEmail(), personInformation.getPhone(), personInformation.getDateOfBirth(), personInformation.getEmployment_id(), personInformation.getAddress());
         this.patientType = patientType;
     }
 

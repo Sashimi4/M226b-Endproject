@@ -29,6 +29,10 @@ public class Person extends AbstractEntity {
     @JoinColumn(name = "employment_id")
     private Employment employment_id;
 
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
     /**
      * create new person and blank out form when using
      */
@@ -43,13 +47,14 @@ public class Person extends AbstractEntity {
      * @param dateOfBirth
      * @param employment_id
      */
-    public Person(String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Employment employment_id) {
+    public Person(String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Employment employment_id, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
         this.employment_id = employment_id;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -87,5 +92,11 @@ public class Person extends AbstractEntity {
     }
     public void setEmployment_id(Employment employment_id) {
         this.employment_id = employment_id;
+    }
+    public Address getAddress() {
+        return address;
+    }
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

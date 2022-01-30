@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 public class DataGenerator {
 
     @Bean
-    public CommandLineRunner loadData(PersonRepository personRepository) {
+    public CommandLineRunner loadPersonData(PersonRepository personRepository) {
         return args -> {
             Logger logger = LoggerFactory.getLogger(getClass());
             if (personRepository.count() != 0L) {

@@ -2,6 +2,8 @@ package ch.sascha.tbz.data.entity;
 
 import ch.sascha.tbz.abstracts.AbstractEntity;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Address extends AbstractEntity {
@@ -12,9 +14,10 @@ public class Address extends AbstractEntity {
 
     private String city;
 
-    private String state;
-
     private String country;
+
+    @OneToMany(mappedBy = "address")
+    private List<Person> people;
 
     public String getStreet() {
         return street;
@@ -33,12 +36,6 @@ public class Address extends AbstractEntity {
     }
     public void setCity(String city) {
         this.city = city;
-    }
-    public String getState() {
-        return state;
-    }
-    public void setState(String state) {
-        this.state = state;
     }
     public String getCountry() {
         return country;

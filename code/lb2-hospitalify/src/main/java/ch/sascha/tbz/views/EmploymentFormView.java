@@ -23,13 +23,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 
-
 // not functioning yet :(
-
 
 @PageTitle("Employment Form")
 @Route(value = "employment-form", layout = MainLayout.class)

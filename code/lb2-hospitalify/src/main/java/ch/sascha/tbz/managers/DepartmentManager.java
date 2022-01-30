@@ -8,29 +8,19 @@ import java.util.ArrayList;
 
 public class DepartmentManager {
 
-    //allows threads
+    //allows threads -> lieber ned
     private final ArrayList<Department> departments;
-
-    private final DepartmentFactory departmentFactory = new DepartmentFactory();
+    private final DepartmentFactory departmentFactory;
 
     public DepartmentManager() {
         this.departments = new ArrayList<>();
-        defineDepartments(departments);
+        this.departmentFactory = new DepartmentFactory();
     }
 
     public ArrayList<Department> getDepartments() {
         return departments;
     }
-
-    public void defineDepartments(ArrayList<Department> departments) {
-
-        //this made be too hard-codey so have a look back at this
-        departments.add(departmentFactory.getDepartment("neurology"));
-        departments.add(departmentFactory.getDepartment("pharmacy"));
-        departments.add(departmentFactory.getDepartment("maternity"));
-        departments.add(departmentFactory.getDepartment("cardiology"));
-        departments.add(departmentFactory.getDepartment("a_e"));
-        departments.add(departmentFactory.getDepartment("operationtheatre"));
-        departments.add(departmentFactory.getDepartment("ophthalmology"));
+    public DepartmentFactory getDepartmentFactory() {
+        return departmentFactory;
     }
 }

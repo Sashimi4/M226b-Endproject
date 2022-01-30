@@ -1,9 +1,13 @@
 package ch.sascha.tbz.views;
 
+import ch.sascha.tbz.abstracts.Department;
 import ch.sascha.tbz.data.entity.Employment;
 import ch.sascha.tbz.data.entity.Person;
 import ch.sascha.tbz.data.service.EmploymentService;
 import ch.sascha.tbz.data.service.PersonService;
+import ch.sascha.tbz.departments.*;
+import ch.sascha.tbz.factories.DepartmentFactory;
+import ch.sascha.tbz.managers.DepartmentManager;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -23,6 +27,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.vaadin.artur.helpers.CrudServiceDataProvider;
+
+import java.util.List;
 
 @PageTitle("Staff Form")
 @Route(value = "staff-form", layout = MainLayout.class)
@@ -40,11 +47,16 @@ public class StaffFormView extends Div {
 
     private Binder<Person> binder = new Binder(Person.class);
 
+    private EmploymentService employmentService;
+    private DepartmentManager departmentManager;
+
     public StaffFormView(PersonService personService, EmploymentService employmentService) {
+        this.employmentService = employmentService;
+        departmentManager = new DepartmentManager();
         addClassName("staff-form-view");
 
         add(createTitle());
-        add(createFormLayout(employmentService));
+        add(createFormLayout());
         add(createButtonLayout());
 
         binder.bindInstanceFields(this);
@@ -66,18 +78,29 @@ public class StaffFormView extends Div {
         return new H3("Personal information");
     }
 
-    private Component createFormLayout(EmploymentService employmentService) {
+    private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email, createEmploymentDropDownBox(employmentService));
+        formLayout.add(firstName, lastName, dateOfBirth, phone, email, createEmploymentDropDownBox());
         return formLayout;
     }
 
-    private Component createEmploymentDropDownBox(EmploymentService employmentService) {
+    private Component createEmploymentDropDownBox() {
         Select<Employment> employmentStatus = new Select<>();
         employmentStatus.setLabel("Job Title");
+        employmentStatus.setItemLabelGenerator(Employment::getEmployment);
         employmentStatus.setItems(employmentService.retrieveAllEmploymentTypes());
         return employmentStatus;
+    }
+
+    private Component createDepartmentDropDownBox() {
+        Select<Department> deparmentDropBox = new Select<>();
+        deparmentDropBox.setLabel("Active Department");
+
+        deparmentDropBox.setItemLabelGenerator(Department::getClass);
+        deparmentDropBox.setItems(departmentManager.getDepartmentFactory().getDepartment("a_e"), departmentManager.getDepartmentFactory().getDepartment("cardiology"), departmentManager.getDepartmentFactory().getDepartment("maternity"), departmentManager.getDepartmentFactory().getDepartment("neurology"), departmentManager.getDepartmentFactory().getDepartment("operationtheatre"), departmentManager.getDepartmentFactory().getDepartment("pharmacy"));
+
+        return deparmentDropBox;
     }
 
     private Component createButtonLayout() {

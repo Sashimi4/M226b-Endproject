@@ -127,8 +127,6 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("Staff Form", "la la-user", StaffFormView.class),
 
-                new MenuItemInfo("Employment Form", "la la-user", EmploymentFormView.class),
-
                 new MenuItemInfo("Admin Detail", "la la-cog", AdminDetailView.class),
 
                 new MenuItemInfo("Address Form", "la la-map-marker", AddressFormView.class),
