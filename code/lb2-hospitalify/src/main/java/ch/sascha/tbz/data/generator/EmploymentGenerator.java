@@ -2,9 +2,7 @@ package ch.sascha.tbz.data.generator;
 
 
 import ch.sascha.tbz.data.entity.Employment;
-import ch.sascha.tbz.data.entity.Person;
 import ch.sascha.tbz.data.service.EmploymentRepository;
-import ch.sascha.tbz.data.service.PersonRepository;
 import com.vaadin.exampledata.DataType;
 import com.vaadin.exampledata.ExampleDataGenerator;
 import com.vaadin.flow.spring.annotation.SpringComponent;
@@ -14,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+
 
 @SpringComponent
 public class EmploymentGenerator {

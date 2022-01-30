@@ -1,7 +1,11 @@
 package ch.sascha.tbz.data.entity;
 
 import ch.sascha.tbz.abstracts.AbstractEntity;
+import ch.sascha.tbz.abstracts.Department;
+import ch.sascha.tbz.pojo.Appointment;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.persistence.*;
 
 /**
@@ -32,6 +36,9 @@ public class Person extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    //List of previous and upcoming appointments
+    private ArrayList<Appointment> appointments = new ArrayList<>();
 
     /**
      * create new person and blank out form when using
@@ -98,5 +105,11 @@ public class Person extends AbstractEntity {
     }
     public void setAddress(Address address) {
         this.address = address;
+    }
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
+    }
+    public void setAppointments(ArrayList<Appointment> appointments) {
+        this.appointments = appointments;
     }
 }

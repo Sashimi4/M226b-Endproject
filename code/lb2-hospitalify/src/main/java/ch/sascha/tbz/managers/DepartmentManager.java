@@ -15,6 +15,7 @@ public class DepartmentManager {
     public DepartmentManager() {
         this.departments = new ArrayList<>();
         this.departmentFactory = new DepartmentFactory();
+        generateDepartments();
     }
 
     public ArrayList<Department> getDepartments() {
@@ -22,5 +23,15 @@ public class DepartmentManager {
     }
     public DepartmentFactory getDepartmentFactory() {
         return departmentFactory;
+    }
+
+    private void generateDepartments() {
+        departments.add(departmentFactory.getDepartment("a_e"));
+        departments.add(departmentFactory.getDepartment("cardiology"));
+        departments.add(departmentFactory.getDepartment("maternity"));
+        departments.add(departmentFactory.getDepartment("neurology"));
+        departments.add(departmentFactory.getDepartment("operationtheatre"));
+        departments.add(departmentFactory.getDepartment("ophthalmology"));
+        departments.add(departmentFactory.getDepartment("pharmacy"));
     }
 }

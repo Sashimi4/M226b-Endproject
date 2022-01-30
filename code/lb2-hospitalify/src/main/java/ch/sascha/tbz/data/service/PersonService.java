@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaadin.artur.helpers.CrudService;
 
+import java.util.List;
+
 @Service
 public class PersonService extends CrudService<Person, Integer> {
 
@@ -15,7 +17,7 @@ public class PersonService extends CrudService<Person, Integer> {
     }
 
     @Override
-    protected PersonRepository getRepository() {
+    public PersonRepository getRepository() {
         return repository;
     }
 

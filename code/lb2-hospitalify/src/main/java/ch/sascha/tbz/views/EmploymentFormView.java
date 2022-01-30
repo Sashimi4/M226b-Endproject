@@ -117,7 +117,7 @@ public class EmploymentFormView extends Div implements BeforeEnterObserver {
         wrapper.setId("grid-wrapper");
         wrapper.setWidthFull();
         splitLayout.addToPrimary(wrapper);
-        wrapper.add(grid);
+        wrapper.add(grid, );
     }
 
     private void createButtonLayout(Div editorLayoutDiv) {

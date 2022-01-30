@@ -8,6 +8,8 @@ import ch.sascha.tbz.data.service.PersonService;
 import ch.sascha.tbz.departments.*;
 import ch.sascha.tbz.factories.DepartmentFactory;
 import ch.sascha.tbz.managers.DepartmentManager;
+import ch.sascha.tbz.managers.StaffManager;
+import ch.sascha.tbz.pojo.StaffMember;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -30,6 +32,7 @@ import com.vaadin.flow.router.Route;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @PageTitle("Staff Form")
 @Route(value = "staff-form", layout = MainLayout.class)
@@ -49,10 +52,14 @@ public class StaffFormView extends Div {
 
     private EmploymentService employmentService;
     private DepartmentManager departmentManager;
+    private StaffManager staffManager;
+
+    private Person sampleStaffMember = new StaffMember();
 
     public StaffFormView(PersonService personService, EmploymentService employmentService) {
         this.employmentService = employmentService;
         departmentManager = new DepartmentManager();
+        staffManager = new StaffManager();
         addClassName("staff-form-view");
 
         add(createTitle());
@@ -63,15 +70,35 @@ public class StaffFormView extends Div {
         clearForm();
 
         cancel.addClickListener(e -> clearForm());
+
         save.addClickListener(e -> {
+            saveStaffMember();
             personService.update(binder.getBean());
             Notification.show(binder.getBean().getClass().getSimpleName() + " details stored.");
             clearForm();
         });
     }
 
+    private void saveStaffMember(){
+        sampleStaffMember = binder.getBean();
+
+        //int departmentWorkerSize = binder.getBean().getDepartment().getEmployeeCount();
+        //binder.getBean().getDepartment().setEmployeeCount(departmentWorkerSize++);
+
+        //for(Department department : departmentManager.getDepartments()){
+        //    if(department.getClass().equals(sampleStaffMember.getDepartment().getClass())){
+        //        department.getEmployees().add((StaffMember) sampleStaffMember);
+        //    }
+        //}
+
+        staffManager.getAllStaffMembers().add(sampleStaffMember);
+        System.out.println(staffManager.getAllStaffMembers().get(0).getFirstName());
+    }
+
+
     private void clearForm() {
         binder.setBean(new Person());
+        sampleStaffMember = null;
     }
 
     private Component createTitle() {
@@ -81,7 +108,7 @@ public class StaffFormView extends Div {
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email, createEmploymentDropDownBox());
+        formLayout.add(firstName, lastName, dateOfBirth, createEmploymentDropDownBox(), createDepartmentDropDownBox(), phone, email);
         return formLayout;
     }
 
@@ -94,13 +121,18 @@ public class StaffFormView extends Div {
     }
 
     private Component createDepartmentDropDownBox() {
-        Select<Department> deparmentDropBox = new Select<>();
-        deparmentDropBox.setLabel("Active Department");
-
-        deparmentDropBox.setItemLabelGenerator(Department::getClass);
-        deparmentDropBox.setItems(departmentManager.getDepartmentFactory().getDepartment("a_e"), departmentManager.getDepartmentFactory().getDepartment("cardiology"), departmentManager.getDepartmentFactory().getDepartment("maternity"), departmentManager.getDepartmentFactory().getDepartment("neurology"), departmentManager.getDepartmentFactory().getDepartment("operationtheatre"), departmentManager.getDepartmentFactory().getDepartment("pharmacy"));
-
-        return deparmentDropBox;
+        Select<Department> departmentDropBox = new Select<>();
+        departmentDropBox.setLabel("Active Department");
+        departmentDropBox.setItemLabelGenerator(Department::toString);
+        departmentDropBox.setItems(
+                departmentManager.getDepartmentFactory().getDepartment("a_e"),
+                departmentManager.getDepartmentFactory().getDepartment("cardiology"),
+                departmentManager.getDepartmentFactory().getDepartment("maternity"),
+                departmentManager.getDepartmentFactory().getDepartment("neurology"),
+                departmentManager.getDepartmentFactory().getDepartment("operationtheatre"),
+                departmentManager.getDepartmentFactory().getDepartment("ophthalmology"),
+                departmentManager.getDepartmentFactory().getDepartment("pharmacy"));
+        return departmentDropBox;
     }
 
     private Component createButtonLayout() {
