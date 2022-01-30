@@ -50,7 +50,6 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
     private TextField email;
     private TextField phone;
     private DatePicker dateOfBirth;
-    private TextField searchField = new TextField();
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
@@ -144,23 +143,6 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         }
     }
 
-    private void createSearchTextField() {
-        searchField.setPlaceholder("Filter by name...");
-        searchField.setClearButtonVisible(true);
-        searchField.setWidth("50%");
-        searchField.setPlaceholder("Search");
-        searchField.setPrefixComponent(new Icon(VaadinIcon.SEARCH));
-        searchField.setValueChangeMode(ValueChangeMode.EAGER);
-        searchField.addValueChangeListener(e -> grid.getDataProvider().refreshAll());
-        searchField.setValueChangeMode(ValueChangeMode.EAGER);
-        searchField.addValueChangeListener(e -> updateList());
-
-    }
-
-    public void updateList() {
-        grid.setItems(personService.findAll(searchField.getValue()));
-    }
-
     private void createEditorLayout(SplitLayout splitLayout) {
         Div editorLayoutDiv = new Div();
         editorLayoutDiv.setClassName("flex flex-col");
@@ -199,12 +181,11 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
     }
 
     private void createGridLayout(SplitLayout splitLayout) {
-        createSearchTextField();
         Div wrapper = new Div();
         wrapper.setId("grid-wrapper");
         wrapper.setWidthFull();
         splitLayout.addToPrimary(wrapper);
-        wrapper.add(grid, searchField);
+        wrapper.add(grid);
     }
 
     private void refreshGrid() {
