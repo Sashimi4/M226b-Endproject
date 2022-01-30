@@ -35,6 +35,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
+/**
+ * Admin view page
+ */
 @PageTitle("Admin Detail")
 @Route(value = "admin-detail/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
 @Uses(Icon.class)
@@ -43,15 +46,40 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
     private final String SAMPLEPERSON_ID = "samplePersonID";
     private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "admin-detail/%d/edit";
 
+    /**
+     * Grid component
+     */
     private Grid<Person> grid = new Grid<>(Person.class, false);
 
+    /**
+     * TextField for firstname
+     */
     private TextField firstName;
+    /**
+     * TextField for lastName
+     */
     private TextField lastName;
+    /**
+     * TextField for email
+     */
     private TextField email;
+    /**
+     * TextField for phone
+     */
     private TextField phone;
+    /**
+     * DatePicker for dateOfBirth
+     */
     private DatePicker dateOfBirth;
 
+    /**
+     * Button for canceling
+     */
     private Button cancel = new Button("Cancel");
+
+    /**
+     * Button for saving
+     */
     private Button save = new Button("Save");
 
     private BeanValidationBinder<Person> binder;
@@ -60,6 +88,10 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
 
     private PersonService personService;
 
+    /**
+     * Constructor for admin detail view page
+     * @param personService     Autowired personService object
+     */
     public AdminDetailView(@Autowired PersonService personService) {
         this.personService = personService;
         addClassNames("admin-detail-view", "flex", "flex-col", "h-full");
@@ -124,6 +156,10 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
 
     }
 
+    /**
+     * Fetch all data before entering
+     * @param event     beforeEnterEvent event
+     */
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         Optional<Integer> samplePersonId = event.getRouteParameters().getInteger(SAMPLEPERSON_ID);
@@ -143,6 +179,10 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         }
     }
 
+    /**
+     * Creates a splitLayout component for the editor view
+     * @param splitLayout           SplitLayout component
+     */
     private void createEditorLayout(SplitLayout splitLayout) {
         Div editorLayoutDiv = new Div();
         editorLayoutDiv.setClassName("flex flex-col");
@@ -170,6 +210,10 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         splitLayout.addToSecondary(editorLayoutDiv);
     }
 
+    /**
+     * Creates layout containing buttons.
+     * @return      Custom component
+     */
     private void createButtonLayout(Div editorLayoutDiv) {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setClassName("w-full flex-wrap bg-contrast-5 py-s px-l");
@@ -180,6 +224,10 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         editorLayoutDiv.add(buttonLayout);
     }
 
+    /**
+     * Creates a grid layout
+     * @param splitLayout       SplitLayout component
+     */
     private void createGridLayout(SplitLayout splitLayout) {
         Div wrapper = new Div();
         wrapper.setId("grid-wrapper");
@@ -188,15 +236,25 @@ public class AdminDetailView extends Div implements BeforeEnterObserver {
         wrapper.add(grid);
     }
 
+    /**
+     * Refreshes the grid
+     */
     private void refreshGrid() {
         grid.select(null);
         grid.getDataProvider().refreshAll();
     }
 
+    /**
+     * Clears from and populates the form with a blank Address object
+     */
     private void clearForm() {
         populateForm(null);
     }
 
+    /**
+     * Populates form
+     * @param value     Person object
+     */
     private void populateForm(Person value) {
         this.samplePerson = value;
         binder.readBean(this.samplePerson);

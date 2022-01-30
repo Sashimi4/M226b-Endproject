@@ -33,8 +33,17 @@ public class MainLayout extends AppLayout {
      */
     public static class MenuItemInfo extends ListItem {
 
+        /**
+         * Contained views
+         */
         private final Class<? extends Component> view;
 
+        /**
+         * Setup Menu items for switching between views
+         * @param menuTitle     String menu title
+         * @param iconClass     String icon class
+         * @param view          View web page
+         */
         public MenuItemInfo(String menuTitle, String iconClass, Class<? extends Component> view) {
             this.view = view;
             RouterLink link = new RouterLink();
@@ -60,6 +69,10 @@ public class MainLayout extends AppLayout {
          */
         @NpmPackage(value = "line-awesome", version = "1.3.0")
         public static class LineAwesomeIcon extends Span {
+            /**
+             * Constructor for fetching classnames
+             * @param lineawesomeClassnames     String for font
+             */
             public LineAwesomeIcon(String lineawesomeClassnames) {
                 // Use Lumo classnames for suitable font size and margin
                 addClassNames("me-s", "text-l");
@@ -73,12 +86,19 @@ public class MainLayout extends AppLayout {
 
     private H1 viewTitle;
 
+    /**
+     * Constructor for creating main layout
+     */
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
         addToNavbar(true, createHeaderContent());
         addToDrawer(createDrawerContent());
     }
 
+    /**
+     * Creates Header Content and toggle hamburger icon
+     * @return          Custom Component
+     */
     private Component createHeaderContent() {
         DrawerToggle toggle = new DrawerToggle();
         toggle.addClassName("text-secondary");
@@ -94,6 +114,10 @@ public class MainLayout extends AppLayout {
         return header;
     }
 
+    /**
+     *  Creates Drawer content in the main layout
+     * @return          Custom component for HTML elements
+     */
     private Component createDrawerContent() {
         H2 appName = new H2("LB2-Hospitalify");
         appName.addClassNames("flex", "items-center", "h-xl", "m-0", "px-m", "text-m");
@@ -104,6 +128,10 @@ public class MainLayout extends AppLayout {
         return section;
     }
 
+    /**
+     * Creates navigation list in main layout
+     * @return          Nav object which represents a
+     */
     private Nav createNavigation() {
         Nav nav = new Nav();
         nav.addClassNames("border-b", "border-contrast-10", "flex-grow", "overflow-auto");
@@ -121,6 +149,10 @@ public class MainLayout extends AppLayout {
         return nav;
     }
 
+    /**
+     * Creates menu items to pick.
+     * @return          Array of MenuItemInfo objects for every view
+     */
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
                 new MenuItemInfo("Patient Form", "la la-user", PatientFormView.class),
@@ -134,19 +166,29 @@ public class MainLayout extends AppLayout {
         };
     }
 
+    /**
+     * Creates a simple a footer component
+     * @return      Footer component
+     */
     private Footer createFooter() {
         Footer layout = new Footer();
         layout.addClassNames("flex", "items-center", "my-s", "px-m", "py-xs");
-
         return layout;
     }
 
+    /**
+     * Update current page in drawer element
+     */
     @Override
     protected void afterNavigation() {
         super.afterNavigation();
         viewTitle.setText(getCurrentPageTitle());
     }
 
+    /**
+     * Fetches current page Title
+     * @return          String of current page title
+     */
     private String getCurrentPageTitle() {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();

@@ -16,20 +16,52 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+/**
+ * View which holds the Address form
+ */
 @PageTitle("Address Form")
 @Route(value = "address-form", layout = MainLayout.class)
 public class AddressFormView extends Div {
 
+    /**
+     * TextField for street
+     */
     private TextField street = new TextField("Street address");
+
+    /**
+     * TextField for postalCode
+     */
     private TextField postalCode = new TextField("Postal code");
+
+    /**
+     * TextField for city
+     */
     private TextField city = new TextField("City");
+
+    /**
+     * Dropdown box for all countries
+     */
     private ComboBox<String> country = new ComboBox<>("Country");
 
+    /**
+     * Button for canceling
+     */
     private Button cancel = new Button("Cancel");
+
+    /**
+     * Button for saving
+     */
     private Button save = new Button("Save");
 
+    /**
+     * Binder object for binding values to an object
+     */
     private Binder<Address> binder = new Binder<>(Address.class);
 
+    /**
+     * Creates the address form web page
+     * @param addressService        Autowired address service object
+     */
     public AddressFormView(AddressService addressService) {
         addClassName("address-form-view");
 
@@ -49,10 +81,18 @@ public class AddressFormView extends Div {
         });
     }
 
+    /**
+     * Creates a new Title object
+     * @return      Custom component
+     */
     private Component createTitle() {
         return new H3("Address");
     }
 
+    /**
+     * Creates Form element containing all text fields and drop boxes
+     * @return      Custom component
+     */
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         formLayout.add(street, 2);
@@ -63,6 +103,10 @@ public class AddressFormView extends Div {
         return formLayout;
     }
 
+    /**
+     * Creates layout containing buttons.
+     * @return      Custom component
+     */
     private Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.addClassName("button-layout");
@@ -72,6 +116,9 @@ public class AddressFormView extends Div {
         return buttonLayout;
     }
 
+    /**
+     * Clears from and populates the form with a blank Address object
+     */
     private void clearForm() {
         this.binder.setBean(new Address());
     }

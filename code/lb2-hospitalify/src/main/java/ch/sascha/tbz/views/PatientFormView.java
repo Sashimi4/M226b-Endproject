@@ -25,23 +25,51 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
+/**
+ * Patient form web page
+ */
 @PageTitle("Patient Form")
 @Route(value = "patient-form", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 @Uses(Icon.class)
 public class PatientFormView extends Div {
 
+    /**
+     * TextField for firstname
+     */
     private TextField firstName = new TextField("First name");
+    /**
+     * TextField for lastName
+     */
     private TextField lastName = new TextField("Last name");
+    /**
+     * TextField for email
+     */
     private EmailField email = new EmailField("Email address");
+    /**
+     * DatePicker for dateOfBirth
+     */
     private DatePicker dateOfBirth = new DatePicker("Birthday");
+    /**
+     * TextField for phone
+     */
     private PhoneNumberField phone = new PhoneNumberField("Phone number");
 
+    /**
+     * Button for canceling
+     */
     private Button cancel = new Button("Cancel");
+    /**
+     * Button for saving
+     */
     private Button save = new Button("Save");
 
     private Binder<Person> binder = new Binder(Person.class);
 
+    /**
+     * Constructor for the web page
+     * @param personService     Autowired personService object
+     */
     public PatientFormView(PersonService personService) {
         addClassName("patient-form-view");
 
@@ -60,14 +88,25 @@ public class PatientFormView extends Div {
         });
     }
 
+    /**
+     * Clears form
+     */
     private void clearForm() {
         binder.setBean(new Person());
     }
 
+    /**
+     * Creates Title component
+     * @return      Custom Component Title
+     */
     private Component createTitle() {
         return new H3("Personal information");
     }
 
+    /**
+     * Creates form layout.
+     * @return          Custom form component
+     */
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
@@ -75,6 +114,10 @@ public class PatientFormView extends Div {
         return formLayout;
     }
 
+    /**
+     * Creates drop box for patientType enum
+     * @return      Custom drop bx component
+     */
     private Component createPatientTypeDropDownBox() {
         Select<PatientType> patientTypeStatus = new Select<>();
         patientTypeStatus.setLabel("Patient Type");
@@ -82,6 +125,10 @@ public class PatientFormView extends Div {
         return patientTypeStatus;
     }
 
+    /**
+     * Creates button layout component
+     * @return      Custom layout containing buttons and themes
+     */
     private Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.addClassName("button-layout");
