@@ -3,11 +3,16 @@ package ch.sascha.tbz.factories;
 import ch.sascha.tbz.abstracts.Department;
 import ch.sascha.tbz.departments.*;
 
-//department creation factory to hide logic and keep abstraction intact
-//hides attributes I give as a parameter
+/**
+ * Factory pattern object for creating subclass departments such as Neurology etc.
+ */
 public class DepartmentFactory {
 
-    //alphabetically ordered
+    /**
+     * Initialises department subclasses using a factory pattern to keep abstraction.
+     * @param departmentID      String of the department class name. Casing gets ignored.
+     * @return                  Subclass of Department corresponding with the parameter given.
+     */
     public Department getDepartment(String departmentID) {
         if (departmentID == null) {
             return null;

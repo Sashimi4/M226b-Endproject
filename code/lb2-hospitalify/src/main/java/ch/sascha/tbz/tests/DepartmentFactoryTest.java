@@ -1,6 +1,5 @@
 package ch.sascha.tbz.tests;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,12 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class DepartmentFactoryTest {
 
     @Test
-    public void testGoingOn() throws Exception{
-        Assert.assertTrue(1 > 0);
+    public void sayHello(){
+        System.out.println("Bur");
     }
 
-    @Test
-    public void testGoingOn2() throws Exception{
-        Assert.assertTrue(1 < 0);
-    }
 }

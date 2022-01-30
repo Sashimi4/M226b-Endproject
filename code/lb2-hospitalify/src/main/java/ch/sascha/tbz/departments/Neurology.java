@@ -2,15 +2,25 @@ package ch.sascha.tbz.departments;
 
 import ch.sascha.tbz.abstracts.Department;
 import ch.sascha.tbz.pojo.StaffMember;
-
 import java.util.Collection;
 
-//brain and studies department
+/**
+ * Subclass of Departments
+ */
 public class Neurology extends Department {
 
+    /**
+     * Empty constructor
+     */
     public Neurology() {
     }
 
+    /**
+     * Constructor with parameters.
+     * @param max_patient_count     int value representing max amount of patients
+     * @param employeeCount         int employee count
+     * @param employees             Collection objects such as ArrayLists, Lists, Sets usw.
+     */
     public Neurology(int max_patient_count, int employeeCount, Collection<StaffMember> employees) {
         super(max_patient_count, employeeCount, employees);
     }

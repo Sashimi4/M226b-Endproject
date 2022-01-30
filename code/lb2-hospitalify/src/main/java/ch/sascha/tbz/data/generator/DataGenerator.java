@@ -11,9 +11,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * Class which generates data of a specific objects
+ */
 @SpringComponent
 public class DataGenerator {
 
+    /**
+     * Method generates data of type Employment and saves them into the table
+     * @param personRepository      PersonRepository object
+     * @return                      CommandLineRunner Object
+     */
     @Bean
     public CommandLineRunner loadPersonData(PersonRepository personRepository) {
         return args -> {

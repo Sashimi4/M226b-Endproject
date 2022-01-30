@@ -1,7 +1,9 @@
 package ch.sascha.tbz.views;
 
+import ch.sascha.tbz.data.entity.Employment;
 import ch.sascha.tbz.data.entity.Person;
 import ch.sascha.tbz.data.service.PersonService;
+import ch.sascha.tbz.pojo.PatientType;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -15,6 +17,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -68,8 +71,15 @@ public class PatientFormView extends Div {
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email);
+        formLayout.add(firstName, lastName, dateOfBirth, phone, email, createPatientTypeDropDownBox());
         return formLayout;
+    }
+
+    private Component createPatientTypeDropDownBox() {
+        Select<PatientType> patientTypeStatus = new Select<>();
+        patientTypeStatus.setLabel("Patient Type");
+        patientTypeStatus.setItems(PatientType.INPATIENT, PatientType.OUTPATIENT);
+        return patientTypeStatus;
     }
 
     private Component createButtonLayout() {

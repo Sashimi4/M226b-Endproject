@@ -1,6 +1,5 @@
 package ch.sascha.tbz.data.generator;
 
-
 import ch.sascha.tbz.data.entity.Employment;
 import ch.sascha.tbz.data.service.EmploymentRepository;
 import com.vaadin.exampledata.DataType;
@@ -13,9 +12,17 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Class which generates data of a specific objects
+ */
 @SpringComponent
 public class EmploymentGenerator {
+
+    /**
+     * Method generates data of type Employment and saves them into the table
+     * @param employmentRepository      EmploymentRepository object
+     * @return                          CommandLineRunner Object
+     */
     @Bean
     public CommandLineRunner loadEmploymentData(EmploymentRepository employmentRepository) {
         return args -> {
