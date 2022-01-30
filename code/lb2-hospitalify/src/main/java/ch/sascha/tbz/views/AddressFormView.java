@@ -1,6 +1,7 @@
 package ch.sascha.tbz.views;
 
 import ch.sascha.tbz.data.entity.Address;
+import ch.sascha.tbz.data.entity.Person;
 import ch.sascha.tbz.data.service.AddressService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -103,6 +104,10 @@ public class AddressFormView extends Div {
         return formLayout;
     }
 
+    public void setAddressMember(Address address){
+        binder.setBean(address);
+    }
+
     /**
      * Creates layout containing buttons.
      * @return      Custom component
@@ -121,5 +126,9 @@ public class AddressFormView extends Div {
      */
     private void clearForm() {
         this.binder.setBean(new Address());
+    }
+
+    public Binder<Address> getBinder() {
+        return binder;
     }
 }

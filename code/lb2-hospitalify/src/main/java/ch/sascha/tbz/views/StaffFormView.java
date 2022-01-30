@@ -120,6 +120,10 @@ public class StaffFormView extends Div {
         sampleStaffMember = null;
     }
 
+    public void setStaffMember(Person person){
+        binder.setBean(person);
+    }
+
     /**
      * Creates Title component
      * @return      Custom Component Title
@@ -219,4 +223,7 @@ public class StaffFormView extends Div {
         }
     }
 
+    public Binder<Person> getBinder() {
+        return binder;
+    }
 }
