@@ -1,7 +1,7 @@
 # M226b-Endproject
 
 **Project description**
-The project surrounds the 
+The project surrounds a simple Hospital managment application.
 
 
 -Factory pattern
