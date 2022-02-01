@@ -104,6 +104,10 @@ public class AddressFormView extends Div {
         return formLayout;
     }
 
+    /**
+     * Sets the current binder of this view to contain information about the object given in the parameter
+     * @param address           Address object
+     */
     public void setAddressMember(Address address){
         binder.setBean(address);
     }

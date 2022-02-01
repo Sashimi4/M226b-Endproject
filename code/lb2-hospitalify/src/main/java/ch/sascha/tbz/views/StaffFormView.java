@@ -120,6 +120,10 @@ public class StaffFormView extends Div {
         sampleStaffMember = null;
     }
 
+    /**
+     * Sets the current binder of this view to contain information about the object given in the parameter
+     * @param person           Person object
+     */
     public void setStaffMember(Person person){
         binder.setBean(person);
     }
@@ -151,6 +155,10 @@ public class StaffFormView extends Div {
         return employmentStatus;
     }
 
+    /**
+     * Creates custom department Component which fetches all departments from a datasource
+     * @return          Custom Department dropbox Component
+     */
     private Component createDepartmentDropDownBox() {
         Select<Department> departmentDropBox = new Select<>();
         departmentDropBox.setLabel("Active Department");
@@ -179,6 +187,9 @@ public class StaffFormView extends Div {
         return buttonLayout;
     }
 
+    /**
+     * Composition based PhoneNumberField class to represent phone number fields and dropbox layout
+     */
     private static class PhoneNumberField extends CustomField<String> {
         private ComboBox<String> countryCode = new ComboBox<>();
         private TextField number = new TextField();
@@ -223,6 +234,10 @@ public class StaffFormView extends Div {
         }
     }
 
+    /**
+     * Getter for retrieving this views web page
+     * @return          Binder with generics of Person
+     */
     public Binder<Person> getBinder() {
         return binder;
     }

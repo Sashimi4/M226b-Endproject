@@ -1,19 +1,14 @@
 package ch.sascha.tbz.tests;
 
 import ch.sascha.tbz.data.entity.Address;
-import ch.sascha.tbz.data.entity.Person;
 import ch.sascha.tbz.data.service.AddressService;
-import ch.sascha.tbz.data.service.EmploymentService;
-import ch.sascha.tbz.data.service.PersonService;
 import ch.sascha.tbz.views.AddressFormView;
-import ch.sascha.tbz.views.StaffFormView;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class AddressFormViewTest {
     private Address validAddress;
-
     private AddressService addressService;
 
     @Before
